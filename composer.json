@@ -1,0 +1,30 @@
+{
+    "name": "mako/sentry",
+    "description": "A Sentry integraion for the Mako Framework",
+    "keywords": ["mako", "framework", "sentry"],
+    "homepage": "http://makoframework.com",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Frederic G. Østby",
+            "email": "frederic.g.ostby@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "mako\\sentry\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=7.2.0",
+        "sentry/sdk": "^2.0.4"
+    },
+    "require-dev": {
+        "mako/framework": "^6.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
