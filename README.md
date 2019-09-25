@@ -14,10 +14,13 @@ Install the package using the following composer command:
 composer require mako/sentry
 ```
 
-Next you'll have to add a `sentry_dsn` config key to your `application.php` config file.
+Next you'll have to add a `sentry` config key to your `application.php` config file.
 
 ```
-'sentry_dsn' => 'https://<key>@sentry.io/<project>',
+'sentry' =>
+[
+	'dsn' => 'https://<key>@sentry.io/<project>',
+],
 ```
 
 Then you'll have to replace the default `LoggerService` with the included `LoggerService` in the `application.php` config file.

@@ -13,7 +13,6 @@ use Monolog\Formatter\LineFormatter;
 use Sentry\ClientBuilder;
 use Sentry\Monolog\Handler;
 use Sentry\SentrySdk;
-use Sentry\State\Hub;
 
 /**
  * Logger service.
@@ -27,11 +26,11 @@ class LoggerService extends Service
 	 */
 	protected function getSentryHandler(): HandlerDecorator
 	{
-		$client = ClientBuilder::create(['dsn' => $this->config->get('application.sentry_dsn')])->getClient();
+		$hub = SentrySdk::init();
 
-		SentrySdk::init()->bindClient($client);
+		$hub->bindClient(ClientBuilder::create($this->config->get('application.sentry', []))->getClient());
 
-		$handler = new HandlerDecorator(new Handler(new Hub($client)));
+		$handler = new HandlerDecorator(new Handler($hub));
 
 		$handler->setFormatter(new LineFormatter("%message% %context% %extra%\n"));
 
