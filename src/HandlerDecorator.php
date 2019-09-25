@@ -42,24 +42,25 @@ class HandlerDecorator extends AbstractProcessingHandler
 	{
 		(function($record): void
 		{
-			if(isset($record['context']['user_id']))
+			if($this->hub->getClient()->getOptions()->shouldSendDefaultPii())
 			{
-				$this->hub->configureScope(function(Scope $scope) use ($record): void
+				if(isset($record['context']['user_id']))
 				{
-					$scope->setUser(['id' => $record['context']['user_id']]);
-				});
-
-				unset($record['context']['user_id']);
-			}
-			elseif(isset($record['context']['user']))
-			{
-				$this->hub->configureScope(function(Scope $scope) use ($record): void
+					$this->hub->configureScope(function(Scope $scope) use ($record): void
+					{
+						$scope->setUser(['id' => $record['context']['user_id']]);
+					});
+				}
+				elseif(isset($record['context']['user']))
 				{
-					$scope->setUser($record['context']['user']);
-				});
-
-				unset($record['context']['user']);
+					$this->hub->configureScope(function(Scope $scope) use ($record): void
+					{
+						$scope->setUser($record['context']['user']);
+					});
+				}
 			}
+
+			unset($record['context']['user_id'], $record['context']['user']);
 
 			$this->write($record);
 		})->bindTo($this->handler, Handler::class)($record);
