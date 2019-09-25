@@ -1,6 +1,6 @@
 {
     "name": "mako/sentry",
-    "description": "A Sentry integraion for the Mako Framework",
+    "description": "A Sentry integration for the Mako Framework",
     "keywords": ["mako", "framework", "sentry"],
     "homepage": "http://makoframework.com",
     "license": "BSD-3-Clause",
