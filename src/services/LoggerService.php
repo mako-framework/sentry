@@ -9,7 +9,6 @@ namespace mako\sentry\services;
 
 use mako\application\services\LoggerService as Service;
 use mako\sentry\HandlerDecorator;
-use Monolog\Formatter\LineFormatter;
 use Sentry\ClientBuilder;
 use Sentry\Monolog\Handler;
 use Sentry\SentrySdk;
@@ -30,10 +29,6 @@ class LoggerService extends Service
 
 		$hub->bindClient(ClientBuilder::create($this->config->get('application.sentry', []))->getClient());
 
-		$handler = new HandlerDecorator(new Handler($hub));
-
-		$handler->setFormatter(new LineFormatter("%message% %context% %extra%\n"));
-
-		return $handler;
+		return new HandlerDecorator(new Handler($hub));
 	}
 }
