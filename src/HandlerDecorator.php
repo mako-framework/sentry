@@ -19,7 +19,7 @@ use Sentry\State\Scope;
 class HandlerDecorator extends AbstractProcessingHandler
 {
 	/**
-	 * Undocumented variable.
+	 * Sentry handler.
 	 *
 	 * @var \Sentry\Monolog\Handler
 	 */
