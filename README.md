@@ -25,7 +25,7 @@ Next you'll have to add a `logger.sentry` config key to your `application.php` c
 		'dsn' => 'https://<key>@sentry.io/<project>',
 	],
 	...
-]
+],
 ```
 
 Then you'll have to replace the default `LoggerService` with the included `LoggerService` in the `application.php` config file.
@@ -50,7 +50,7 @@ And finally you'll have to enable logging to sentry by setting the `logger.handl
 	...
 	'handler' => ['Sentry', 'Stream'],
 	...
-]
+],
 ```
 
 > Note that you can disable the default file logging by setting the value to `['Sentry']`.
