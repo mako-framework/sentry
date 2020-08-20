@@ -27,7 +27,7 @@ class LoggerService extends Service
 	{
 		$hub = SentrySdk::init();
 
-		$hub->bindClient(ClientBuilder::create($this->config->get('application.sentry', []))->getClient());
+		$hub->bindClient(ClientBuilder::create($this->config->get('application.logger.sentry', []))->getClient());
 
 		return new HandlerDecorator(new Handler($hub));
 	}
