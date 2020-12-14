@@ -36,7 +36,7 @@ class HandlerDecorator extends AbstractProcessingHandler
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * {@inheritDoc}
 	 */
 	protected function write(array $record): void
 	{
