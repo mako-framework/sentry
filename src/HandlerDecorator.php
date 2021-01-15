@@ -60,7 +60,18 @@ class HandlerDecorator extends AbstractProcessingHandler
 				}
 			}
 
-			unset($record['context']['user_id'], $record['context']['user']);
+			if(isset($record['context']['extra']) && is_array($record['context']['extra']))
+			{
+				$this->hub->configureScope(function(Scope $scope) use ($record): void
+				{
+					foreach($record['context']['extra'] as $key => $value)
+					{
+						$scope->setExtra((string) $key, $value);
+					}
+				});
+			}
+
+			unset($record['context']['user_id'], $record['context']['user'], $record['context']['extra']);
 
 			$this->write($record);
 		})->bindTo($this->handler, Handler::class)($record);
