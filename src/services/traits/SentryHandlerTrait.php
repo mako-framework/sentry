@@ -9,6 +9,10 @@ namespace mako\sentry\services\traits;
 
 use mako\sentry\HandlerDecorator;
 use Sentry\ClientBuilder;
+use Sentry\Integration\EnvironmentIntegration;
+use Sentry\Integration\FrameContextifierIntegration;
+use Sentry\Integration\RequestIntegration;
+use Sentry\Integration\TransactionIntegration;
 use Sentry\Monolog\Handler;
 use Sentry\SentrySdk;
 
@@ -19,6 +23,28 @@ use Sentry\SentrySdk;
  */
 trait SentryHandlerTrait
 {
+	/**
+	 * Get Sentry options.
+	 *
+	 * @return array
+	 */
+	protected function getSentryOptions(): array
+	{
+		$config = $this->config->get('application.logger.sentry', []);
+
+		return $config +
+		[
+			'default_integrations' => false,
+			'integrations'         =>
+			[
+				new RequestIntegration,
+				new TransactionIntegration,
+				new FrameContextifierIntegration,
+				new EnvironmentIntegration,
+			],
+		];
+	}
+
 	/*
 	 * Returns a decorated sentry monolog handler.
 	 *
@@ -28,7 +54,7 @@ trait SentryHandlerTrait
 	{
 		$hub = SentrySdk::init();
 
-		$hub->bindClient(ClientBuilder::create($this->config->get('application.logger.sentry', []))->getClient());
+		$hub->bindClient(ClientBuilder::create($this->getSentryOptions())->getClient());
 
 		return new HandlerDecorator(new Handler($hub));
 	}
