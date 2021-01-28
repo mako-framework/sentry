@@ -10,6 +10,9 @@ namespace mako\sentry\services;
 use mako\application\services\LoggerService as Service;
 use mako\sentry\HandlerDecorator;
 use Sentry\ClientBuilder;
+use Sentry\Integration\FrameContextifierIntegration;
+use Sentry\Integration\RequestIntegration;
+use Sentry\Integration\TransactionIntegration;
 use Sentry\Monolog\Handler;
 use Sentry\SentrySdk;
 
@@ -18,6 +21,27 @@ use Sentry\SentrySdk;
  */
 class LoggerService extends Service
 {
+	/**
+	 * Get Sentry options.
+	 *
+	 * @return array
+	 */
+	protected function getSentryOptions(): array
+	{
+		$config = $this->config->get('application.logger.sentry', []);
+
+		return $config +
+		[
+			'default_integrations' => false,
+			'integrations'         =>
+			[
+				new RequestIntegration,
+				new TransactionIntegration,
+				new FrameContextifierIntegration,
+			],
+		];
+	}
+
 	/*
 	 * Returns a decorated sentry monolog handler.
 	 *
@@ -27,7 +51,7 @@ class LoggerService extends Service
 	{
 		$hub = SentrySdk::init();
 
-		$hub->bindClient(ClientBuilder::create($this->config->get('application.sentry', []))->getClient());
+		$hub->bindClient(ClientBuilder::create($this->getSentryOptions())->getClient());
 
 		return new HandlerDecorator(new Handler($hub));
 	}

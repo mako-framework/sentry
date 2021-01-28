@@ -42,38 +42,32 @@ class HandlerDecorator extends AbstractProcessingHandler
 	{
 		(function($record): void
 		{
-			if($this->hub->getClient()->getOptions()->shouldSendDefaultPii())
+			$this->hub->withScope(function(Scope $scope) use ($record): void
 			{
-				if(isset($record['context']['user_id']))
+				if($this->hub->getClient()->getOptions()->shouldSendDefaultPii())
 				{
-					$this->hub->configureScope(function(Scope $scope) use ($record): void
+					if(isset($record['context']['user_id']))
 					{
 						$scope->setUser(['id' => $record['context']['user_id']]);
-					});
-				}
-				elseif(isset($record['context']['user']))
-				{
-					$this->hub->configureScope(function(Scope $scope) use ($record): void
+					}
+					elseif(isset($record['context']['user']))
 					{
 						$scope->setUser($record['context']['user']);
-					});
+					}
 				}
-			}
 
-			if(isset($record['context']['extra']) && is_array($record['context']['extra']))
-			{
-				$this->hub->configureScope(function(Scope $scope) use ($record): void
+				if(isset($record['context']['extra']) && is_array($record['context']['extra']))
 				{
 					foreach($record['context']['extra'] as $key => $value)
 					{
 						$scope->setExtra((string) $key, $value);
 					}
-				});
-			}
+				}
 
-			unset($record['context']['user_id'], $record['context']['user'], $record['context']['extra']);
+				unset($record['context']['user_id'], $record['context']['user'], $record['context']['extra']);
 
-			$this->write($record);
+				$this->write($record);
+			});
 		})->bindTo($this->handler, Handler::class)($record);
 	}
 }
