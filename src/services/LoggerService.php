@@ -28,7 +28,7 @@ class LoggerService extends Service
 	 */
 	protected function getSentryOptions(): array
 	{
-		$config = $this->config->get('application.logger.sentry', []);
+		$config = $this->config->get('application.sentry', []);
 
 		return $config +
 		[
