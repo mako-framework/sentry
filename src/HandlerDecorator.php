@@ -13,8 +13,6 @@ use Sentry\State\Scope;
 
 /**
  * Sentry handler decorator.
- *
- * @author Frederic G. Østby
  */
 class HandlerDecorator extends AbstractProcessingHandler
 {
