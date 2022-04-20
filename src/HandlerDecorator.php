@@ -38,9 +38,9 @@ class HandlerDecorator extends AbstractProcessingHandler
 	 */
 	protected function write(array $record): void
 	{
-		(function($record): void
+		(function ($record): void
 		{
-			$this->hub->withScope(function(Scope $scope) use ($record): void
+			$this->hub->withScope(function (Scope $scope) use ($record): void
 			{
 				if($this->hub->getClient()->getOptions()->shouldSendDefaultPii())
 				{
