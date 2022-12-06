@@ -11,6 +11,8 @@ use Monolog\Handler\AbstractProcessingHandler;
 use Sentry\Monolog\Handler;
 use Sentry\State\Scope;
 
+use function is_array;
+
 /**
  * Sentry handler decorator.
  */
