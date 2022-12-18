@@ -1,6 +1,7 @@
 # Mako Sentry
 
 [![Build Status](https://github.com/mako-framework/sentry/workflows/Tests/badge.svg)](https://github.com/mako-framework/sentry/actions?query=workflow%3ATests)
+[![Static analysis](https://github.com/mako-framework/sentry/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/mako-framework/sentry/actions/workflows/static-analysis.yml)
 
 A [Sentry](https://sentry.io/welcome/) integration for the Mako Framework.
 
