@@ -26,31 +26,16 @@ class BasicAuth
 	protected const REGEX = '/(https?:\/\/)([^\s]+:[^\s]+)(@)/iu';
 
 	/**
-	 * Event.
-	 *
-	 * @var \Sentry\Event
-	 */
-	protected $event;
-
-	/**
-	 * Event hint.
-	 *
-	 * @var \Sentry\EventHint|null
-	 */
-	protected $hint;
-
-	/**
 	 * Constructor.
 	 *
 	 * @param \Sentry\Event          $event Event
 	 * @param \Sentry\EventHint|null $hint  Event hint
 	 */
-	public function __construct(Event $event, ?EventHint $hint)
-	{
-		$this->event = $event;
-
-		$this->hint = $hint;
-	}
+	public function __construct(
+		protected Event $event,
+		protected ?EventHint $hint
+	)
+	{}
 
 	/**
 	 * Removes basic auth details from URLs in the exception message.

@@ -16,19 +16,20 @@
         }
     },
     "require": {
-        "php": ">=7.4.0",
+        "php": ">=8.0.0",
         "sentry/sdk": "^3.3"
     },
     "require-dev": {
-        "mako/framework": "^8.0.0-dev",
-        "monolog/monolog": "^2.3",
+        "mako/framework": "^9.0.0-dev",
+        "monolog/monolog": "^2.8",
+        "phpstan/phpstan": "^1.4.5",
         "phpunit/phpunit": "^9.5"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0-dev"
+            "dev-master": "4.0-dev"
         }
     }
 }

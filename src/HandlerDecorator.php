@@ -19,21 +19,14 @@ use function is_array;
 class HandlerDecorator extends AbstractProcessingHandler
 {
 	/**
-	 * Sentry handler.
-	 *
-	 * @var \Sentry\Monolog\Handler
-	 */
-	protected $handler;
-
-	/**
 	 * Constructor.
 	 *
 	 * @param \Sentry\Monolog\Handler $handler Sentry handler
 	 */
-	public function __construct(Handler $handler)
-	{
-		$this->handler = $handler;
-	}
+	public function __construct(
+		protected Handler $handler
+	)
+	{}
 
 	/**
 	 * {@inheritDoc}
@@ -42,6 +35,7 @@ class HandlerDecorator extends AbstractProcessingHandler
 	{
 		(function ($record): void
 		{
+			/** @var \Sentry\Monolog\Handler $this */
 			$this->hub->withScope(function (Scope $scope) use ($record): void
 			{
 				if($this->hub->getClient()->getOptions()->shouldSendDefaultPii())
