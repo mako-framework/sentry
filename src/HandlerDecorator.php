@@ -8,6 +8,7 @@
 namespace mako\sentry;
 
 use Monolog\Handler\AbstractProcessingHandler;
+use Monolog\LogRecord;
 use Sentry\Monolog\Handler;
 use Sentry\State\Scope;
 
@@ -31,36 +32,45 @@ class HandlerDecorator extends AbstractProcessingHandler
 	/**
 	 * {@inheritDoc}
 	 */
-	protected function write(array $record): void
+	protected function write(LogRecord $record): void
 	{
-		(function ($record): void
+		(function (LogRecord $record): void
 		{
 			/** @var \Sentry\Monolog\Handler $this */
 			$this->hub->withScope(function (Scope $scope) use ($record): void
 			{
 				if($this->hub->getClient()->getOptions()->shouldSendDefaultPii())
 				{
-					if(isset($record['context']['user_id']))
+					if(isset($record->context['user_id']))
 					{
-						$scope->setUser(['id' => $record['context']['user_id']]);
+						$scope->setUser(['id' => $record->context['user_id']]);
 					}
-					elseif(isset($record['context']['user']))
+					elseif(isset($record->context['user']))
 					{
-						$scope->setUser($record['context']['user']);
+						$scope->setUser($record->context['user']);
 					}
 				}
 
-				if(isset($record['context']['extra']) && is_array($record['context']['extra']))
+				if(isset($record->context['extra']) && is_array($record->context['extra']))
 				{
-					foreach($record['context']['extra'] as $key => $value)
+					foreach($record->context['extra'] as $key => $value)
 					{
 						$scope->setExtra((string) $key, $value);
 					}
 				}
 
-				unset($record['context']['user_id'], $record['context']['user'], $record['context']['extra']);
+				$context = $record->context;
 
-				$this->write($record);
+				unset($context['user_id'], $context['user'], $context['extra']);
+
+				$this->write(new LogRecord(
+					$record->datetime,
+					$record->channel,
+					$record->level,
+					$record->message,
+					$context,
+					$record->extra
+				));
 			});
 		})->bindTo($this->handler, Handler::class)($record);
 	}
