@@ -16,8 +16,6 @@ interface ScrubberInterface
 {
 	/**
 	 * Removes basic auth details from URLs in the exception message.
-	 *
-	 * @return \Sentry\Event
 	 */
 	public function scrub(): Event;
 }

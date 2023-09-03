@@ -25,8 +25,6 @@ trait SentryHandlerTrait
 {
 	/**
 	 * Get Sentry options.
-	 *
-	 * @return array
 	 */
 	protected function getSentryOptions(): array
 	{
@@ -47,8 +45,6 @@ trait SentryHandlerTrait
 
 	/*
 	 * Returns a decorated sentry monolog handler.
-	 *
-	 * @return \mako\sentry\HandlerDecorator
 	 */
 	protected function getSentryHandler(): HandlerDecorator
 	{

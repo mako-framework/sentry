@@ -22,14 +22,13 @@ class BasicAuth
 {
 	/**
 	 * Regex matching basic auth in URLs.
+	 *
+	 * @var string
 	 */
 	protected const REGEX = '/(https?:\/\/)([^\s]+:[^\s]+)(@)/iu';
 
 	/**
 	 * Constructor.
-	 *
-	 * @param \Sentry\Event          $event Event
-	 * @param \Sentry\EventHint|null $hint  Event hint
 	 */
 	public function __construct(
 		protected Event $event,
@@ -39,8 +38,6 @@ class BasicAuth
 
 	/**
 	 * Removes basic auth details from URLs in the exception message.
-	 *
-	 * @param \Throwable $exception Exception
 	 */
 	protected function scrubExceptionMessage(Throwable $exception): void
 	{
@@ -77,8 +74,6 @@ class BasicAuth
 
 	/**
 	 * Removes basic auth details from URLs in the exception message.
-	 *
-	 * @return \Sentry\Event
 	 */
 	public function __invoke(): Event
 	{

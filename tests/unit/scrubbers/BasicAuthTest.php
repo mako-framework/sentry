@@ -20,8 +20,6 @@ class BasicAuthTest extends TestCase
 {
 	/**
 	 * Returns the exception message.
-	 *
-	 * @return string
 	 */
 	protected function getMessage(): string
 	{
@@ -32,8 +30,6 @@ class BasicAuthTest extends TestCase
 
 	/**
 	 * Returns the expected exception message.
-	 *
-	 * @return string
 	 */
 	protected function getExcpectedMessage(): string
 	{
