@@ -26,35 +26,28 @@ class HandlerDecorator extends AbstractProcessingHandler
 	 */
 	public function __construct(
 		protected Handler $handler
-	)
-	{}
+	) {
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected function write(LogRecord $record): void
 	{
-		(function (LogRecord $record): void
-		{
+		(function (LogRecord $record): void {
 			/** @var \Sentry\Monolog\Handler $this */
-			$this->hub->withScope(function (Scope $scope) use ($record): void
-			{
-				if($this->hub->getClient()->getOptions()->shouldSendDefaultPii())
-				{
-					if(isset($record->context['user_id']))
-					{
+			$this->hub->withScope(function (Scope $scope) use ($record): void {
+				if ($this->hub->getClient()->getOptions()->shouldSendDefaultPii()) {
+					if (isset($record->context['user_id'])) {
 						$scope->setUser(['id' => $record->context['user_id']]);
 					}
-					elseif(isset($record->context['user']))
-					{
+					elseif (isset($record->context['user'])) {
 						$scope->setUser($record->context['user']);
 					}
 				}
 
-				if(isset($record->context['extra']) && is_array($record->context['extra']))
-				{
-					foreach($record->context['extra'] as $key => $value)
-					{
+				if (isset($record->context['extra']) && is_array($record->context['extra'])) {
+					foreach ($record->context['extra'] as $key => $value) {
 						$scope->setExtra((string) $key, $value);
 					}
 				}

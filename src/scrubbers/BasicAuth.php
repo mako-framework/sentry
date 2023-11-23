@@ -33,8 +33,8 @@ class BasicAuth
 	public function __construct(
 		protected Event $event,
 		protected ?EventHint $hint
-	)
-	{}
+	) {
+	}
 
 	/**
 	 * Removes basic auth details from URLs in the exception message.
@@ -43,8 +43,7 @@ class BasicAuth
 	{
 		$message = $exception->getMessage();
 
-		if(preg_match(static::REGEX, $message) === 1)
-		{
+		if (preg_match(static::REGEX, $message) === 1) {
 			$exceptionReflection = new ReflectionObject($exception);
 
 			$messageReflection = $exceptionReflection->getProperty('message');
@@ -62,8 +61,7 @@ class BasicAuth
 	 */
 	public function scrub(): Event
 	{
-		if($this->event !== null && $this->hint !== null && $this->hint->exception instanceof Throwable)
-		{
+		if ($this->event !== null && $this->hint !== null && $this->hint->exception instanceof Throwable) {
 			$this->scrubExceptionMessage($this->hint->exception);
 
 			$this->event->setMessage($this->hint->exception->getMessage());

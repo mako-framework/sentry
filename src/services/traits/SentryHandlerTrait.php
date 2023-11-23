@@ -33,8 +33,7 @@ trait SentryHandlerTrait
 		return $config +
 		[
 			'default_integrations' => false,
-			'integrations'         =>
-			[
+			'integrations'         => [
 				new RequestIntegration,
 				new TransactionIntegration,
 				new FrameContextifierIntegration,
