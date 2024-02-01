@@ -37,6 +37,7 @@ class HandlerDecorator extends AbstractProcessingHandler
 		(function (LogRecord $record): void {
 			/** @var \Sentry\Monolog\Handler $this */
 			$this->hub->withScope(function (Scope $scope) use ($record): void {
+				/** @var \Sentry\Monolog\Handler $this */
 				if ($this->hub->getClient()->getOptions()->shouldSendDefaultPii()) {
 					if (isset($record->context['user_id'])) {
 						$scope->setUser(['id' => $record->context['user_id']]);
