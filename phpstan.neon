@@ -2,6 +2,7 @@ includes:
 	- phpstan-baseline.neon
 parameters:
 	level: 5
-	reportUnmatchedIgnoredErrors: false
+	reportUnmatchedIgnoredErrors: true
 	ignoreErrors:
 		- '#Access to private property Sentry\\Monolog\\Handler::\$hub\.#'
+		- '#PHPDoc tag @var with type Sentry\\Monolog\\Handler is not subtype of native type \$this\(mako\\sentry\\HandlerDecorator\)\.#'

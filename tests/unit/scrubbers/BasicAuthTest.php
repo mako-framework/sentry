@@ -10,12 +10,11 @@ namespace mako\sentry\tests\unit;
 use Exception;
 use mako\sentry\scrubbers\BasicAuth;
 use Monolog\Test\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 use Sentry\Event;
 use Sentry\EventHint;
 
-/**
- * @group unit
- */
+#[Group('unit')]
 class BasicAuthTest extends TestCase
 {
 	/**

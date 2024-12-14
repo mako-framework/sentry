@@ -31,7 +31,7 @@ class BasicAuth
 	 * Constructor.
 	 */
 	public function __construct(
-		protected Event $event,
+		protected ?Event $event,
 		protected ?EventHint $hint
 	) {
 	}

@@ -16,25 +16,33 @@
         }
     },
     "require": {
-        "php": ">=8.1.0",
-        "sentry/sentry": "^4.5"
+        "php": ">=8.4.0",
+        "sentry/sentry": "^4.10"
     },
     "require-dev": {
-        "mako/framework": "^10.0.0-dev",
-        "monolog/monolog": "^3.4",
-        "phpstan/phpstan": "^1.10.32",
-        "phpunit/phpunit": "^10.3"
+        "mako/framework": "^11.0.0-dev",
+        "monolog/monolog": "^3.8",
+        "phpstan/phpstan": "^2.0.3",
+        "phpunit/phpunit": "^11.5"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "5.1-dev"
+            "dev-master": "6.0-dev"
         }
     },
     "config": {
         "allow-plugins": {
             "php-http/discovery": true
         }
+    },
+    "scripts": {
+        "phpunit": "phpunit --display-incomplete --display-skipped --display-deprecations --display-errors --display-notices --display-warning --display-phpunit-deprecations",
+        "phpstan": "phpstan analyze src --no-progress --memory-limit=-1 -c phpstan.neon",
+        "qa": [
+            "@phpunit",
+            "@phpstan"
+        ]
     }
 }
