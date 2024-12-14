@@ -22,7 +22,7 @@ class HandlerDecorator extends AbstractProcessingHandler
 	/**
 	 * Constructor.
 	 *
-	 * @param \Sentry\Monolog\Handler $handler Sentry handler
+	 * @param Handler $handler Sentry handler
 	 */
 	public function __construct(
 		protected Handler $handler
@@ -35,9 +35,9 @@ class HandlerDecorator extends AbstractProcessingHandler
 	protected function write(LogRecord $record): void
 	{
 		(function (LogRecord $record): void {
-			/** @var \Sentry\Monolog\Handler $this */
+			/** @var Handler $this */
 			$this->hub->withScope(function (Scope $scope) use ($record): void {
-				/** @var \Sentry\Monolog\Handler $this */
+				/** @var Handler $this */
 				if ($this->hub->getClient()->getOptions()->shouldSendDefaultPii()) {
 					if (isset($record->context['user_id'])) {
 						$scope->setUser(['id' => $record->context['user_id']]);
