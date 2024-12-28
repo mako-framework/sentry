@@ -17,5 +17,5 @@ interface ScrubberInterface
 	/**
 	 * Removes basic auth details from URLs in the exception message.
 	 */
-	public function scrub(): Event;
+	public function scrub(): ?Event;
 }

@@ -59,7 +59,7 @@ class BasicAuth
 	/**
 	 * {@inheritDoc}
 	 */
-	public function scrub(): Event
+	public function scrub(): ?Event
 	{
 		if ($this->event !== null && $this->hint !== null && $this->hint->exception instanceof Throwable) {
 			$this->scrubExceptionMessage($this->hint->exception);
@@ -73,7 +73,7 @@ class BasicAuth
 	/**
 	 * Removes basic auth details from URLs in the exception message.
 	 */
-	public function __invoke(): Event
+	public function __invoke(): ?Event
 	{
 		return $this->scrub();
 	}
