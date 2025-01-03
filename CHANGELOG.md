@@ -1,3 +1,27 @@
+### 6.0.0 <small>(2025-01-03)</small>
+
+#### Changes
+
+* Bumped requirements to Mako 11+ and PHP 8.4+.
+
+--------------------------------------------------------
+
+### 5.0.3 <small>(2024-11-23)</small>
+
+#### Bugfixes
+
+* PHP 8.4 compatibility.
+
+--------------------------------------------------------
+
+### 5.0.2 <small>(2024-06-07)</small>
+
+#### Bugfixes
+
+* Fixed ScrubberInterface filename.
+
+--------------------------------------------------------
+
 ### 5.0.1 <small>(2024-02-01)</small>
 
 #### Changes
