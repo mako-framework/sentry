@@ -48,8 +48,6 @@ class BasicAuth
 
 			$messageReflection = $exceptionReflection->getProperty('message');
 
-			$messageReflection->setAccessible(true);
-
 			$message = preg_replace(static::REGEX, '$1[redacted]$3', $message);
 
 			$messageReflection->setValue($exception, $message);
