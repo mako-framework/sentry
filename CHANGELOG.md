@@ -1,3 +1,11 @@
+### 7.0.0 <small>(2026-01-05)</small>
+
+#### Changes
+
+* Bumped requirements to Mako 12+ and PHP 8.5+.
+
+--------------------------------------------------------
+
 ### 6.0.0 <small>(2025-01-03)</small>
 
 #### Changes
