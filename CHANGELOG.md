@@ -1,3 +1,11 @@
+### 7.0.1 <small>(2026-02-21)</small>
+
+#### Changes
+
+* Renamed internal trait for consistency across packages (SentryHandlerTrait -> SentryLoggerServiceTrait).
+
+--------------------------------------------------------
+
 ### 7.0.0 <small>(2026-01-05)</small>
 
 #### Changes
