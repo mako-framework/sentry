@@ -17,11 +17,11 @@ use Sentry\Monolog\Handler;
 use Sentry\SentrySdk;
 
 /**
- * Sentry handler trait.
+ * Sentry logger service trait.
  *
  * @property \mako\config\Config $config
  */
-trait SentryHandlerTrait
+trait SentryLoggerServiceTrait
 {
 	/**
 	 * Get Sentry options.
