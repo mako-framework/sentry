@@ -8,12 +8,12 @@
 namespace mako\sentry\services;
 
 use mako\application\services\LoggerService as Service;
-use mako\sentry\services\traits\SentryHandlerTrait;
+use mako\sentry\services\traits\SentryLoggerServiceTrait;
 
 /**
  * Logger service.
  */
 class LoggerService extends Service
 {
-	use SentryHandlerTrait;
+	use SentryLoggerServiceTrait;
 }
