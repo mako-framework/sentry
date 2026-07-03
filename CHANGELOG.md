@@ -1,3 +1,11 @@
+### 7.0.2 <small>(2026-07-03)</small>
+
+#### Changes
+
+* Extend PHPUnit's base test case.
+
+--------------------------------------------------------
+
 ### 7.0.1 <small>(2026-02-21)</small>
 
 #### Changes
