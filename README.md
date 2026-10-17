@@ -7,7 +7,7 @@ A [Sentry](https://sentry.io/welcome/) integration for the Mako Framework.
 
 ## Requirements
 
-Mako 11.0 or greater.
+* Mako ^12.0|^13.0
 
 ## Installation
 
